@@ -4,6 +4,21 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
 
+const services = [
+  { label: "UI / UX Design", slug: "ui-ux-design" },
+  { label: "Web Development", slug: "web-development" },
+  { label: "App Development", slug: "app-development" },
+  {
+    label: "Social Media Management & Marketing",
+    slug: "social-media-management-&-marketing",
+  },
+  { label: "Graphic Designing", slug: "graphic-designing" },
+  { label: "AI & Automation", slug: "ai-&-automation" },
+  { label: "2D / 3D Animation", slug: "2d-3d-animation" },
+  { label: "Content Creation", slug: "content-creation" },
+  { label: "Hosting & Migration", slug: "hosting-&-migration" },
+];
+
 export default function Header() {
   const [open, setOpen] = useState(false);
 
@@ -19,14 +34,13 @@ export default function Header() {
             width={140}
             height={36}
             priority
-            className="h-21 w-auto"
+            className="h-32 w-auto"
           />
         </Link>
 
         {/* Navigation */}
         <nav className="flex items-center gap-6 text-sm text-gray-200 relative">
 
-          {/* Home */}
           <Link href="/" className="hover:text-white transition">
             Home
           </Link>
@@ -37,53 +51,45 @@ export default function Header() {
             onMouseEnter={() => setOpen(true)}
             onMouseLeave={() => setOpen(false)}
           >
-            <button className="hover:text-white transition flex items-center gap-1">
+            <button
+              type="button"
+              className="hover:text-white transition flex items-center gap-1"
+            >
               Services
               <span className="text-xs">▾</span>
             </button>
 
             {open && (
-              <div className="absolute top-full left-0 mt-3 w-64 rounded-xl 
-                              bg-black/90 backdrop-blur-xl border border-white/10 
-                              shadow-xl p-4 space-y-2">
-                {[
-                  "UI / UX Design",
-                  "Web Development",
-                  "App Development",
-                  "Social Media Management & Marketing",
-                  "Graphic Designing",
-                  "AI & Automation",
-                  "2D / 3D Animation",
-                  "Content Creation",
-                  "Hosting & Migration",
-                ].map((service) => (
+              <div
+                className="absolute top-full left-0 mt-3 w-64 rounded-xl
+                           bg-black/90 backdrop-blur-xl border border-white/10
+                           shadow-xl p-4 space-y-2"
+              >
+                {services.map((service) => (
                   <Link
-                    key={service}
-                    href="/services"
+                    key={service.slug}
+                    href={`/services/${service.slug}`}
                     className="block text-sm text-gray-300 hover:text-[#ed7922] transition"
                   >
-                    {service}
+                    {service.label}
                   </Link>
                 ))}
               </div>
             )}
           </div>
 
-          {/* Portfolio */}
           <Link href="/portfolio" className="hover:text-white transition">
             Portfolio
           </Link>
 
-          {/* About */}
           <Link href="/about" className="hover:text-white transition">
             About
           </Link>
 
-          {/* Contact Button */}
           <Link
             href="/contact"
-            className="ml-4 px-5 py-2 rounded-full bg-[#ed7922] text-black 
-                       font-semibold hover:opacity-90 transition"
+            className="ml-4 px-5 py-2 rounded-full bg-[#ed7922]
+                       text-black font-semibold hover:opacity-90 transition"
           >
             Contact
           </Link>
